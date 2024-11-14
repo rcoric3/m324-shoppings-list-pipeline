@@ -1,5 +1,6 @@
-import Link from 'next/link';
-import styles from './Header.module.css';
+import React from "react";
+import Link from "next/link";
+import styles from "./Header.module.css";
 
 export default function Header() {
   return (
@@ -21,5 +22,5 @@ export default function Header() {
         </ul>
       </nav>
     </header>
-  )
+  );
 }
