@@ -16,16 +16,34 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '18.18.0'
+          node-version: '18.18.0' 
 
       - name: Install dependencies
         run: npm install
 
-      - name: Run linting
-        run: npm run lint
+      # Schritt 1: Linting-Testschritt hinzufügen
+      - name: Linting (echo Testlauf)
+        run: echo "Running Linting checks..."
+      
+      # Implementiere Linting mit echo vorerst für Debugging
+      - name: Run Linting
+        run: |
+          npm run lint || exit 1
+        continue-on-error: false # Die Pipeline schlägt bei Linting-Fehlern fehl
 
-      - name: Run tests
-        run: npm test
+      # Schritt 2: Test- und Linting-Setup-Test (echo)
+      - name: Tests (echo Testlauf)
+        run: echo "Running Tests..."
+
+      # Implementiere Testlauf mit echo und Fehlerschutz
+      - name: Run Tests
+        run: |
+          npm test || exit 1
+        continue-on-error: false # Pipeline schlägt bei Test-Fehlern fehl
 
       - name: Build Next.js app
         run: npm run build
+
+      # Optional: Clean up Node.js modules (zur Wartbarkeit)
+      - name: Clean up Node modules
+        run: rm -rf node_modules
