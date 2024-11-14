@@ -13,7 +13,7 @@ export default function Header() {
             <Link href="/register">Neue Liste erstellen</Link>
           </li>
           <li>
-            <Link href="/join">Liste beitreten</Link>
+            <Link href="/join">Liste beitretenn</Link>
           </li>
           <li>
             <Link href="/list">Einkaufsliste anzeigen</Link>
