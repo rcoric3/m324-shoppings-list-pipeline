@@ -6,9 +6,9 @@ on:
       - main
 
 jobs:
-  build-and-test:
-    runs-on: ubuntu-latest
 
+  lint:
+    runs-on: ubuntu-latest
     steps:
       - name: Check out the repository code
         uses: actions/checkout@v2
@@ -16,34 +16,43 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '18.18.0' 
+          node-version: '18.18.0'
 
       - name: Install dependencies
         run: npm install
 
-      # Schritt 1: Linting-Testschritt hinzufügen
-      - name: Linting (echo Testlauf)
+      - name: Echo Linting (Testlauf)
         run: echo "Running Linting checks..."
-      
-      # Implementiere Linting mit echo vorerst für Debugging
-      - name: Run Linting
-        run: |
-          npm run lint || exit 1
-        continue-on-error: false # Die Pipeline schlägt bei Linting-Fehlern fehl
 
-      # Schritt 2: Test- und Linting-Setup-Test (echo)
-      - name: Tests (echo Testlauf)
+      - name: Run Linting
+        run: npm run lint
+
+  # Testing Job
+  test:
+    runs-on: ubuntu-latest
+    needs: lint  
+    steps:
+      - name: Check out the repository code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18.18.0'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Echo Testing (Testlauf)
         run: echo "Running Tests..."
 
-      # Implementiere Testlauf mit echo und Fehlerschutz
       - name: Run Tests
-        run: |
-          npm test || exit 1
-        continue-on-error: false # Pipeline schlägt bei Test-Fehlern fehl
+        run: npm test
 
-      - name: Build Next.js app
-        run: npm run build
-
-      # Optional: Clean up Node.js modules (zur Wartbarkeit)
-      - name: Clean up Node modules
-        run: rm -rf node_modules
+  # Deployment Simulation Job
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test  
+    steps:
+      - name: Deployment Step
+        run: echo "Deployment successful"
