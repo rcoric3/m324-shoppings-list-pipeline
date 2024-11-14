@@ -6,3 +6,5 @@
 - **Linting und Tests**: Das Linting und die Tests werden ausgeführt, um Syntaxfehler und fehlerhaften Code zu vermeiden. Falls ein Fehler auftritt, wird die Pipeline angehalten.
 - **Build**: Abschliessend wird die Anwendung gebaut, was die letzte Überprüfung darstellt, bevor Änderungen veröffentlicht werden.
 ### Kritik und Verbesserungsvorschläge
+- Projekt vor Prüfungsbeginn sauber aufsetzen, React versionen etc. führen zu unnötig verlorener Zeit.
+- schriftliche Prüfung oder ganzes Projekt, praktische Prüfungen sind immer mühsam
